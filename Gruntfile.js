@@ -1,7 +1,7 @@
 module.exports = function(grunt) {
   grunt.initConfig({
     watch: {
-      files: ['**/*', '!./package.json', '!**/node_modules/**', '!**/.git/**'],
+      files: ['**/*', '!package.json', '!**/node_modules/**', '!**/.git/**'],
       tasks: ['shell']
     },
     shell: {
