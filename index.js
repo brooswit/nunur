@@ -1,3 +1,3 @@
-const Cthulhu = require('Cthulhu')
+const const Cthulhu = require('Cthulhu')
 const cthulhu = new Cthulhu()
 cthulhu.start()
