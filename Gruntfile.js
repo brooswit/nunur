@@ -5,7 +5,7 @@ module.exports = function(grunt) {
       tasks: ['shell']
     },
     shell: {
-      command: 'bash ./add_scripts/update.sh && bash ./add_scripts/test.sh && bash ./add_scripts/push.sh',
+      command: 'bash ./add_scripts/test.sh && bash ./add_scripts/push.sh && bash ./add_scripts/update.sh',
       options: {stdout: true}
     }
   });
