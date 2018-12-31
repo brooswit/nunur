@@ -3,24 +3,3 @@ const nunur = new Nunur()
 
 
 nunur.start()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
