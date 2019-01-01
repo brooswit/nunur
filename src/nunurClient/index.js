@@ -5,13 +5,13 @@ module.exports = class NunurClient extends Process {
     this._minion = new Minion()
     this._minion.start()
     this._minion.requestTask('authenticate', {identity, password}, (authRes) => {
-      this.emit('authenticate_response', authRes)
+      this.emit('authenticate', authRes)
     })
 
   }
 
   async message(identity) {
-    if(!await promiseToEmit(this, ))
+    if(!await promiseToEmit(this, ''))
   }
 
 }
