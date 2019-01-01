@@ -12,7 +12,7 @@ module.exports = class NunurClient extends Process {
 
   async message(identity, message) {
     if(!await promiseToEmit(this, 'authenticate')) return false
-    this._minion.requestTaEvent(`message/${identity}, {message})
+    this._minion.requestTask(`message', {message})
   }
 
 }
