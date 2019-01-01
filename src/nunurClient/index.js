@@ -4,7 +4,7 @@ module.exports = class NunurClient extends Process {
   constructor(url, identity, password) {
     this.promiseToAuthenticate = promiseToEmit(this, 'authenticate')
 
-    this._minion = new Minion()
+    this._minion = new Minion(url)
     this._minion.start()
     this._minion.requestTask('authenticate', {identity, password}, (authRes) => {
       this.emit('authenticate', authRes)
