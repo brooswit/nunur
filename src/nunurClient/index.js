@@ -3,7 +3,7 @@ const {Minion} = require('Cthulhu')
 module.exports = class NunurClient extends Process {
   constructor(url, identity, password) {
     super(async () => {
-      
+        
     })
     this.promiseToAuthenticate = promiseToEmit(this, 'authenticate')
 
