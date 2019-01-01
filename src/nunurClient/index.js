@@ -11,8 +11,7 @@ module.exports = class NunurClient extends Process {
   }
 
   async message(identity, message) {
-
-    const authRes = 
+    cio
     const authSuccess = authRes['success']
     if(!≈) return false
     const {token} = this
