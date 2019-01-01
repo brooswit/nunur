@@ -10,8 +10,5 @@ module.exports = class NunurClient extends Process {
       }
     })
   }
-
-  login() {
-    new NunurSession()
-  }
+  
 }
