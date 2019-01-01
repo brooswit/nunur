@@ -10,6 +10,6 @@ module.exports = class NunurClient extends Process {
 
   }
 
-  message()
+  message(identity)
 
 }
