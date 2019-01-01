@@ -14,7 +14,9 @@ module.exports = class NunurClient extends Process {
 
       if(!authRes.success) this.close()
       this.emit('authenticate', authRes)
-      iff(!authRes.success) return
+      if(!authRes.success) return
+
+      
     })
   }
 
