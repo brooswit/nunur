@@ -16,5 +16,6 @@ module.exports = class NunurClient extends Process {
     const messageResponse await new Promise((resolve) => {
       this._minion.requestTask('message', {token, identity, message}, resolve)
     })
+    messageSuccess = messageResponse.
   }
 }
