@@ -2,7 +2,7 @@ const {Process} = require('brooswit-common')
 const {Minion} = require('Cthulhu')
 module.exports = class NunurClient extends Process {
   constructor(url, identity, password) {
-    super(async (process) => {
+    super(async () => {
       this.promiseToAuthenticate = promiseToEmit(this, 'authenticate')
 
       this._minion = new Minion(url)
