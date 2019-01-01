@@ -7,7 +7,6 @@ module.exports = class NunurClient extends Process {
     this._minion.requestTask('authenticate', {identity, password}, (authRes) => {
       this.emit('authenticate', authRes)
     })
-
   }
 
   async message(target, message) {
@@ -23,5 +22,4 @@ module.exports = class NunurClient extends Process {
     messageSuccess = messageResponse['success']
     return messageSuccess
   }
-
 }
