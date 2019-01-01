@@ -9,7 +9,7 @@ module.exports = class NunurClient extends Process {
     this._minion.requestTask('authenticate', {identity, password}, (authRes) => {
       this.emit('authenticate', authRes)
       const {success} = authRes
-      
+      if()
     })
   }
 
