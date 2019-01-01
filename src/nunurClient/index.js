@@ -23,4 +23,6 @@ module.exports = class NunurClient extends Process {
     messageSuccess = messageResponse['success']
     return messageSuccess
   }
+
+  
 }
