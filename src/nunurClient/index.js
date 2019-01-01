@@ -16,7 +16,9 @@ module.exports = class NunurClient extends Process {
       this.emit('authenticate', authRes)
       if(!authRes.success) return
 
-      this.hookEvent(`message/${identity}`, new)
+      this.hookEvent(`message/${identity}`,(message)=>{
+
+      })
     })
   }
 
