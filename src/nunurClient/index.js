@@ -9,7 +9,7 @@ module.exports = class NunurClient extends Process {
         this.emit('authenticate_success')
       }
       else {
-        
+        this.emit('authenticate_')
       }
     })
   }
