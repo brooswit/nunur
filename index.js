@@ -1,7 +1,7 @@
-const Nunur = require('./src/nunur')
-const nunur = new Nunur()
+const NunurServer = require('./src/nunurServer')
+const nunurServer = new NunurServer()
 
-nunur.express.use(express.static(path.join(__dirname, 'build')))
-nunur.express.use(express.static(path.join(__dirname, 'public')))
+nunurServer.express.use(express.static(path.join(__dirname, 'src/build')))
+nunurServer.express.use(express.static(path.join(__dirname, 'src/public')))
 
-nunur.start()
+nunurServer.start()
