@@ -1,5 +1,5 @@
 const {Minion} = require('Cthulhu')
-module.exports = class NunurClient extends process{
+module.exports = class NunurClient extends process {
   constructor(username, password) {
     this._minion = new Minion()
     this._minion.start()
