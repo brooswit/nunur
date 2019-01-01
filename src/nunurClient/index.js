@@ -1,4 +1,4 @@
-const {}
+const {Process} = require('')
 const {Minion} = require('Cthulhu')
 module.exports = class NunurClient extends Process {
   constructor(username, password) {
