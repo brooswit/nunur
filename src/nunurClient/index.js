@@ -11,7 +11,7 @@ module.exports = class NunurClient extends Process {
   }
 
   async message(identity, message) {
-    const auth
+    const authS
     if(!await promiseToEmit(this, 'authenticate')) return false
     const {token} = this
     const messageResponse = await new Promise((resolve) => {
