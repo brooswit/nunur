@@ -4,7 +4,9 @@ module.exports = class NunurClient {
     this._minion = new Minion()
     this._minion.start()
     this._minion.requestTask('login', {username, password}, (success) => {
-      if (success) 
+      if (success) {
+
+      }
     })
   }
 
