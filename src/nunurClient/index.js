@@ -12,8 +12,8 @@ module.exports = class NunurClient extends Process {
         this._minion.requestTask('authenticate', {identity, password}, resolve)
       })
 
+      if(!authRes.success) this.close()
       this.emit('authenticate', authRes)
-      if(!authRes.success) return this.close()
     })
   }
 
