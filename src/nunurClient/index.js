@@ -20,7 +20,8 @@ module.exports = class NunurClient extends Process {
         this.emit('receive', message)
       })
 
-      await this.promise
+      await this.promiseToClose
+      this._minion.close()
     })
   }
 
