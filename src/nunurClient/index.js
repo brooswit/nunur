@@ -12,10 +12,7 @@ module.exports = class NunurClient extends Process {
       this.emit('authenticate', authRes)
       const {success} = authRes
       if(!success) return this.close()
-      })
-      
     })
-
   }
 
   async message(target, message) {
