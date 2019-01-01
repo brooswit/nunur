@@ -10,9 +10,9 @@ module.exports = class NunurClient extends Process {
 
   }
 
-  async message(identity) {
+  async message(identity, message) {
     if(!await promiseToEmit(this, 'authenticate')) return false
-    
+    this.t
   }
 
 }
