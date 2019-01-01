@@ -16,7 +16,7 @@ module.exports = class NunurClient extends Process {
       this.emit('authenticate', authRes)
       if(!authRes.success) return
 
-      this.hookEvent(`message/${identity}`,(message)=>{
+      this._minion.hookEvent(`message/${identity}`,(message)=>{
         this.emit('receive', message)
       })
     })
