@@ -21,7 +21,7 @@ module.exports = class NunurClient extends Process {
     const authSuccess = authRes['success']
     if(!authSuccess) return false
 
-    const token = authSuccess['token']
+    const token = authRes['token']
     const messageResponse = await new Promise((resolve) => {
       this._minion.requestTask('message', {token, target, message}, resolve)
     })
