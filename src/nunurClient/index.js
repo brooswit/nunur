@@ -16,10 +16,10 @@ module.exports = class NunurClient extends Process {
       this.emit('authenticate', authRes)
       if(!authRes.success) return
 
-      this.hookEvent(`message/${identity}`, this.)
+      this.hookEvent(`message/${identity}`, new)
     })
   }
-  
+
 
   async message(target, message) {
     const authRes = await this.promiseToAuthenticate
