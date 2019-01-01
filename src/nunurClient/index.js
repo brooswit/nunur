@@ -14,8 +14,7 @@ module.exports = class NunurClient extends Process {
     if(!await promiseToEmit(this, 'authenticate')) return false
     const {token} = this
     await new Promise((resolve) => {
-      this._minion.requestTask('message', {token, identity, message}, async (messageRes) => {
-        
+      this._minion.requestTask('message', {token, identity, message}, res
     })
   }
 }
