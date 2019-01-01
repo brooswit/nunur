@@ -19,6 +19,8 @@ module.exports = class NunurClient extends Process {
       this._minion.hookEvent(`message/${identity}`,(message)=>{
         this.emit('receive', message)
       })
+
+      await this.promise
     })
   }
 
