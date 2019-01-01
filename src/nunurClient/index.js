@@ -24,5 +24,4 @@ module.exports = class NunurClient extends Process {
     return messageSuccess
   }
 
-  a
 }
