@@ -1,26 +1,34 @@
 {
-    "name": "nunur",
-    "version": "0.0.357",
-    "description": "",
-    "main": "index.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/brooswit/nunur.git"
-    },
-    "author": "",
-    "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/brooswit/nunur/issues"
-    },
-    "homepage": "https://github.com/brooswit/nunur#readme",
-    "dependencies": {
-        "Cthulhu": "git+https://github.com/brooswit/cthulhu.git",
-        "brooswit-common": "git+https://github.com/brooswit/js-common.git",
-        "grunt": "^1.0.3",
-        "grunt-contrib-watch": "^1.1.0",
-        "grunt-shell": "^3.0.1"
-    }
+  "name": "boilerplate",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "es6-promise": "^4.2.6",
+    "express": "^4.16.4",
+    "express-ws": "^4.0.0",
+    "js-common": "git+https://github.com/brooswit/js-common.git",
+    "vue": "^2.6.10",
+    "vuex": "^3.1.0",
+    "ws": "^6.2.0"
+  },
+  "scripts": {
+    "build": "bash build.sh dev",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brooswit/boilerplate.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brooswit/boilerplate/issues"
+  },
+  "homepage": "https://github.com/brooswit/boilerplate#readme",
+  "devDependencies": {
+    "@vue/component-compiler-utils": "^2.6.0",
+    "cssnano": "^4.1.10",
+    "vue-template-compiler": "^2.6.10"
+  }
 }
