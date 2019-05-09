@@ -1,3 +1,3 @@
 export default {
-  baseUrl: "http://localhost"
+  baseUrl: "ws://localhost:8080"
 }
