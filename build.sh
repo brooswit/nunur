@@ -1,3 +1,4 @@
+la # debug
 ENV=$1
 
 # compile
