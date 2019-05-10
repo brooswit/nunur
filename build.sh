@@ -2,7 +2,7 @@ ENV=$1
 
 # compile
 echo COMPILING
-rm -rf ./compiled
+if [ -d "./compiled" ]; then rm -Rf ./compiled; fi
 mkdir compiled
 cp -r ./src/ ./compiled/
 rm -rf ./compiled/configs/
