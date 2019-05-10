@@ -1,4 +1,4 @@
-la # debug
+ls # debug
 ENV=$1
 
 # compile
