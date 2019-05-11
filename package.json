@@ -10,7 +10,12 @@
     "js-common": "git+https://github.com/brooswit/js-common.git",
     "vue": "^2.6.10",
     "vuex": "^3.1.0",
-    "ws": "^6.2.0"
+    "ws": "^6.2.0",
+    "@vue/component-compiler-utils": "^2.6.0",
+    "cssnano": "^4.1.10",
+    "mustache": "^3.0.1",
+    "parcel": "^1.12.3",
+    "vue-template-compiler": "^2.6.10"
   },
   "scripts": {
     "build": "bash build.sh dev",
@@ -26,12 +31,5 @@
   "bugs": {
     "url": "https://github.com/brooswit/boilerplate/issues"
   },
-  "homepage": "https://github.com/brooswit/boilerplate#readme",
-  "devDependencies": {
-    "@vue/component-compiler-utils": "^2.6.0",
-    "cssnano": "^4.1.10",
-    "mustache": "^3.0.1",
-    "parcel": "^1.12.3",
-    "vue-template-compiler": "^2.6.10"
-  }
+  "homepage": "https://github.com/brooswit/boilerplate#readme"
 }
