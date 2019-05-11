@@ -6,6 +6,7 @@ echo COMPILING
 if [ -d "./compiled" ]; then rm -Rf ./compiled; fi
 mkdir compiled
 cp -r ./src/ ./compiled/
+echo -------
 ls ./compiled # debug
 rm -rf ./compiled/configs/
 
