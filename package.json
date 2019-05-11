@@ -15,7 +15,7 @@
   "scripts": {
     "build": "bash build.sh dev",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "bash build.sh prod; node index.js"
   },
   "repository": {
     "type": "git",
