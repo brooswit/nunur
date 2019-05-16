@@ -31,7 +31,7 @@ async function getUser(identifier , rawAuthentication) {
           if (!user) {
             user = {authentication}
             await new Promise(async (resolve)=>{
-              redis.hset('user', identifier, user, resolve)
+              redis.hset('user', identifier, JSON.stringify(user), resolve)
             })
           }
           resolve(user)
