@@ -20,7 +20,7 @@ async function getUser(identifier , rawAuthentication) {
   let storeType = "redis"
   let user = null
   bcrypt.hash(rawAuthentication, process.env.PASSWORD_SALT || "nunur", async (err, authentication) => {
-    console.log({identifier, authentication})
+    console.warn({err, identifier, authentication})
     if(storeType === "none") {
       if (!users[identifier]) {
         users[identifier] = {authentication}
