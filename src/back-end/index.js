@@ -27,11 +27,13 @@ async function getUser(identifier , rawAuthentication) {
       user = users[identifier]
     } else if (storeType === "redis") {
       user = await new Promise(async (resolve)=>{
-        redis.hget('user', identifier, async (err, user) => {
+        redis.hget('user', identifier, async (err, userJson) => {
+          let user = JSON.parse(userJson)
           if (!user) {
             user = {authentication}
             await new Promise(async (resolve)=>{
-              redis.hset('user', identifier, JSON.stringify(user), resolve)
+              const userJson = JSON.stringify(user)
+              redis.hset('user', identifier, userJson, resolve)
             })
           }
           resolve(user)
