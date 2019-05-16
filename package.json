@@ -20,7 +20,8 @@
     "ws": "^6.2.1"
   },
   "scripts": {
-    "build": "bash build.sh dev",
+    "dev": "bash build.sh dev",
+    "build": "bash build.sh prod",
     "start": "node index",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
