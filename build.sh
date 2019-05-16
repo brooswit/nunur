@@ -1,4 +1,3 @@
-ls # debug
 ENV=$1
 
 # compile
@@ -6,8 +5,6 @@ echo COMPILING
 if [ -d "./compiled" ]; then rm -Rf ./compiled; fi
 mkdir compiled
 cp -r ./src/* ./compiled/
-echo -------
-ls ./compiled # debug
 rm -rf ./compiled/configs/
 
 rm ./compiled/front-end/config.js
@@ -22,10 +19,8 @@ mustache ./src/configs/back-end/$ENV.json ./src/back-end/config.mustache > ./com
 # build
 echo BUILDING
 rm -rf ./build
-mkdir build
-cd build
-mkdir public
-cd ..
+mkdir ./build
+mkdir ./build/public
 
-cp -r ./compiled/back-end/ ./build/
+cp -r ./compiled/back-end/* ./build/
 parcel build ./compiled/front-end/index.html --out-dir ./build/public/ --out-file index.html
