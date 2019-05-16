@@ -19,7 +19,7 @@ enableWs(expressApp)
 async function getUser(identifier , rawAuthentication) {
   let storeType = "redis"
   let user = null
-  bcrypt.hash(rawAuthentication, process.env.PASSWORD_SALT || "nunur", async function(err, authentication) {
+  bcrypt.hash(rawAuthentication, process.env.PASSWORD_SALT || "nunur", async (err, authentication) => {
     if(storeType === "none") {
       if (!users[identifier]) {
         users[identifier] = {authentication}
@@ -50,7 +50,7 @@ async function getUser(identifier , rawAuthentication) {
 
 expressApp.ws('/stream', async ws => {
   extendWs(ws, true)
-  ws.on('login', async (async {identifier , authentication}, remoteMessageId) => {
+  ws.on('login', async ( {identifier , authentication}, remoteMessageId) => {
     const user = await getUser(identifier, authentication)
     const success = !!user
     if(user) {
