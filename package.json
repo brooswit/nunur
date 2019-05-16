@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "@vue/component-compiler-utils": "^3.0.0",
     "babel-polyfill": "^6.26.0",
     "es6-promise": "^4.2.6",
     "express": "^4.16.4",
