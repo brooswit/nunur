@@ -19,7 +19,7 @@ enableWs(expressApp)
 async function getUser(identifier , rawAuthentication) {
   let storeType = "redis"
   let user = null
-  bcrypt.hash(rawAuthentication, process.env.PASSWORD_SALT || "nunur", function(err, authentication) {
+  bcrypt.hash(rawAuthentication, process.env.PASSWORD_SALT || "nunur", await function(err, authentication) {
     if(storeType === "none") {
       if (!users[identifier]) {
         users[identifier] = {authentication}
