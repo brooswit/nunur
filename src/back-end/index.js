@@ -29,10 +29,12 @@ async function getUser(identifier , rawAuthentication) {
       user = await new Promise(async (resolve)=>{
         redis.hget('user', identifier, async (err, userJson) => {
           let user = JSON.parse(userJson)
+          console.warn({userJson, user})
           if (!user) {
             user = {authentication}
             await new Promise(async (resolve)=>{
               const userJson = JSON.stringify(user)
+              console.warn({userJson})
               redis.hset('user', identifier, userJson, resolve)
             })
           }
