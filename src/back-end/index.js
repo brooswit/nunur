@@ -30,7 +30,7 @@ async function getUser(identifier , rawAuthentication) {
         redis.hget('user', identifier, async (err, userJson) => {
           let user = JSON.parse(userJson)
           console.warn({userJson, user})
-          if (!user) {
+          if (!user || !user.authentication) {
             user = {authentication}
             await new Promise(async (resolve)=>{
               const userJson = JSON.stringify(user)
