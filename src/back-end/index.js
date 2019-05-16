@@ -37,8 +37,9 @@ async function getUser(identifier , rawAuthentication) {
               console.warn({userJson})
               redis.hset('user', identifier, userJson, resolve)
             })
+          } else {
+            resolve(user)
           }
-          resolve(user)
         })
       })
     }
