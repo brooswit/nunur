@@ -27,6 +27,7 @@ async function getUser(identifier , authentication) {
   let user = await new Promise((resolve) => {
     redis.hget('user', identifier, async (err, userJson) => {
       if (err) throw err;
+      console.warn({userJson})
       resolve(JSON.parse(userJson))
     })
   })
