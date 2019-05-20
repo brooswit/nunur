@@ -27,8 +27,8 @@ async function getUser(identifier , authentication) {
   let user = await new Promise((resolve) => {
     redis.hget('user', identifier, async (err, userJson) => {
       if (err) throw err;
-      console.warn({userJson})
-      resolve(safeJSON.parse(userJson, {}))
+      let userData = safeJSON.parse(userJson, {})
+      resolve(userData)
     })
   })
 
@@ -45,6 +45,7 @@ async function getUser(identifier , authentication) {
       })
     })
   }
+  console.log('got user: ', {user})
 
   // Determine if User is Valid
   valid = await new Promise((resolve) => {
@@ -52,6 +53,7 @@ async function getUser(identifier , authentication) {
       resolve(!err)
     });
   })
+  console.log('valid: ', {valid})
 
   // Update User if Valid
   if (valid) {
@@ -63,6 +65,8 @@ async function getUser(identifier , authentication) {
       })
     })
   }
+
+  console.warn('got user: ', {user, valid})
 
   return valid ? user : null
 }
