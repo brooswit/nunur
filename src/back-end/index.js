@@ -17,16 +17,12 @@ let eventEmitter = new EventEmitter()
 enableWs(expressApp)
 
 async function getUser(identifier , rawAuthentication) {
+  console.warn('====getUser====')
   let storeType = "redis"
   let user = null
-  bcrypt.hash(rawAuthentication, bcrypt.genSaltSync(31), async (err, authentication) => {
+  bcrypt.hash(rawAuthentication, process.env.PASSWORD_SALT || "nunur", async (err, authentication) => {
     console.warn({err, identifier, authentication})
-    if(storeType === "none") {
-      if (!users[identifier]) {
-        users[identifier] = {authentication}
-      }
-      user = users[identifier]
-    } else if (storeType === "redis") {
+    if (storeType === "redis") {
       user = await new Promise(async (resolve)=>{
         redis.hget('user', identifier, async (err, userJson) => {
           let user = JSON.parse(userJson)
@@ -43,6 +39,13 @@ async function getUser(identifier , rawAuthentication) {
           }
         })
       })
+    } else {
+      if (!users[identifier]) {
+        users[identifier] = {authentication}
+      }
+      user = users[identifier]
+    } 
+
     }
 
   })
