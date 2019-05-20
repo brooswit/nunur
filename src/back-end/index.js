@@ -1,4 +1,6 @@
-const bcrypt = require('bcrypt');
+var crypto = require('crypto');
+var argon2i = require('argon2-ffi').argon2i;
+
 const redis = require('redis').createClient(process.env.REDIS_URL);
 const EventEmitter = require('events')
 const express = require('express')
@@ -16,45 +18,52 @@ let eventEmitter = new EventEmitter()
 // setup ws
 enableWs(expressApp)
 
-async function getUser(identifier , rawAuthentication) {
+async function getUser(identifier , authentication) {
+  let valid = null
+
   console.warn('====getUser====')
-  let storeType = "redis"
-  let user = null
-  bcrypt.hash(rawAuthentication, process.env.PASSWORD_SALT || "nunur", async (err, authentication) => {
-    console.warn({err, identifier, authentication})
-    if (storeType === "redis") {
-      user = await new Promise(async (resolve)=>{
-        redis.hget('user', identifier, async (err, userJson) => {
-          let user = JSON.parse(userJson)
-          console.warn({userJson, user})
-          if (!user || !user.authentication) {
-            user = {authentication}
-            await new Promise(async (resolve)=>{
-              const userJson = JSON.stringify(user)
-              console.warn({userJson})
-              redis.hset('user', identifier, userJson, resolve)
-            })
-          } else {
-            resolve(user)
-          }
-        })
-      })
-    } else {
-      if (!users[identifier]) {
-        users[identifier] = {authentication}
-      }
-      user = users[identifier]
-    } 
 
-    }
-
+  // Get User
+  let user = await new Promise((resolve) => {
+    redis.hget('user', identifier, async (err, userJson) => {
+      if (err) throw err;
+      resolve(JSON.parse(userJson))
+    })
   })
 
-  if (!user || users.authentication !== authentication) {
-    user = null
+  // Generate hash if User doesn't exist
+  if (!user.authentication) {
+    await new Promise((resolve) => {
+      crypto.randomBytes(16, async (err, salt) => {
+        if (err) throw err;
+        argon2i.hash(authentication, salt, async (err, hash) => {
+          if (err) throw err;
+          user.authentication = hash
+          resolve()
+        })
+      })
+    })
   }
 
-  return user
+  // Determine if User is Valid
+  valid = await new Promise((resolve) => {
+    argon2i.verify(user.authentication, authentication, async (err) => {
+      resolve(!err)
+    });
+  })
+
+  // Update User if Valid
+  if (valid) {
+    await new Promise((resolve) => {
+      let userJson = JSON.stringify(user)
+      redis.hset('user', identifier, userJson, async (err) => {
+        if (err) { throw err }
+        resolve()
+      })
+    })
+  }
+
+  return valid ? user : null
 }
 
 expressApp.ws('/stream', async ws => {

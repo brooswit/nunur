@@ -5,8 +5,10 @@
   "main": "index.js",
   "dependencies": {
     "@vue/component-compiler-utils": "^3.0.0",
+    "argon2-ffi": "^1.1.2",
     "babel-polyfill": "^6.26.0",
     "bcrypt": "^3.0.6",
+    "crypto": "^1.0.1",
     "es6-promise": "^4.2.6",
     "express": "^4.16.4",
     "express-ws": "^4.0.0",
