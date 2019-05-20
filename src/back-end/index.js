@@ -6,7 +6,7 @@ const EventEmitter = require('events')
 const express = require('express')
 const bodyParser = require('body-parser')
 const enableWs = require('express-ws')
-const {extendWs} = require('js-common')
+const {safeJSON, extendWs} = require('js-common')
 // setup express
 const expressApp = express()
 expressApp.use(bodyParser.json())
@@ -28,7 +28,7 @@ async function getUser(identifier , authentication) {
     redis.hget('user', identifier, async (err, userJson) => {
       if (err) throw err;
       console.warn({userJson})
-      resolve(JSON.parse(userJson))
+      resolve(safeJSON.parse(userJson, {}))
     })
   })
 
