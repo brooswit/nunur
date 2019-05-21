@@ -47,14 +47,9 @@ async function getUser(identifier , authentication) {
           throw err;
         }
         console.warn('argon2i start')
-        argon2i.hash(authentication, salt, async (err, hash) => {
-          console.warn('argon2i done')
-          if (err) {
-            console.warn(err)
-            throw err;
-          }
-          resolve(hash)
-        })
+        let hash = await argon2i.hash(authentication, salt)
+        console.warn('argon2i done')
+        resolve(hash)
       })
     })
   }
