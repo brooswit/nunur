@@ -38,8 +38,10 @@ async function getUser(identifier , authentication) {
   console.warn('checking auth')
   // Generate hash if User doesn't exist
   if (!user.authentication) {
-    await new Promise(async (resolve) => {
+    user.authentication = await new Promise(async (resolve) => {
+      console.warn('crypto start')
       crypto.randomBytes(16, async (err, salt) => {
+        console.warn('crypto done')
         if (err) {
           console.warn(err)
           throw err;
@@ -49,8 +51,7 @@ async function getUser(identifier , authentication) {
             console.warn(err)
             throw err;
           }
-          user.authentication = hash
-          resolve()
+          resolve(hash)
         })
       })
     })
