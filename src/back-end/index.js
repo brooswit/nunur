@@ -24,14 +24,18 @@ async function getUser(identifier , authentication) {
   console.warn('====getUser====')
 
   // Get User
-  let user = await new Promise((resolve) => {
+  let user = await new Promise(async(resolve) => {
     redis.hget('user', identifier, async (err, userJson) => {
-      if (err) throw err;
+      if (err) {
+        console.warn(err)
+        throw err;
+      }
       let userData = safeJSON.parse(userJson, {})
       resolve(userData)
     })
   })
 
+  console.warn('checking auth')
   // Generate hash if User doesn't exist
   if (!user.authentication) {
     await new Promise((resolve) => {
