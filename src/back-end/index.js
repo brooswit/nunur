@@ -38,11 +38,17 @@ async function getUser(identifier , authentication) {
   console.warn('checking auth')
   // Generate hash if User doesn't exist
   if (!user.authentication) {
-    await new Promise((resolve) => {
+    await new Promise(async (resolve) => {
       crypto.randomBytes(16, async (err, salt) => {
-        if (err) throw err;
+        if (err) {
+          console.warn(err)
+          throw err;
+        }
         argon2i.hash(authentication, salt, async (err, hash) => {
-          if (err) throw err;
+          if (err) {
+            console.warn(err)
+            throw err;
+          }
           user.authentication = hash
           resolve()
         })
@@ -54,6 +60,9 @@ async function getUser(identifier , authentication) {
   // Determine if User is Valid
   valid = await new Promise((resolve) => {
     argon2i.verify(user.authentication, authentication, async (err) => {
+      if (err) {
+        console.warn(err)
+      }
       resolve(!err)
     });
   })
