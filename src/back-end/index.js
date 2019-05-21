@@ -46,7 +46,9 @@ async function getUser(identifier , authentication) {
           console.warn(err)
           throw err;
         }
+        console.warn('argon2i start')
         argon2i.hash(authentication, salt, async (err, hash) => {
+          console.warn('argon2i done')
           if (err) {
             console.warn(err)
             throw err;
