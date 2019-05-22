@@ -30,7 +30,7 @@ async function getUser(identifier , authentication) {
         console.warn(err)
         throw err;
       }
-      let userData = safeJSON.parse(userJson, {})
+      let userData = safeJSON.parse(userJson) || {}
       resolve(userData)
     })
   })
