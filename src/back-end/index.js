@@ -45,7 +45,7 @@ async function authenticate(identifier , authentication) {
         if (err) {
           throw err
         }
-        let hash = argon2i.hash(authentication, salt)
+        let hash = await argon2i.hash(authentication, salt)
         resolve({hash})
       })
     })
