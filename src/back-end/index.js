@@ -1,7 +1,7 @@
-var crypto = require('crypto');
-var argon2i = require('argon2-ffi').argon2i;
+var crypto = require('crypto')
+var argon2i = require('argon2-ffi').argon2i
 
-const redis = require('redis').createClient(process.env.REDIS_URL);
+const redis = require('redis').createClient(process.env.REDIS_URL)
 const EventEmitter = require('events')
 const express = require('express')
 const bodyParser = require('body-parser')
@@ -18,67 +18,57 @@ let eventEmitter = new EventEmitter()
 // setup ws
 enableWs(expressApp)
 
-async function getUser(identifier , authentication) {
-  let valid = null
-
-  console.warn('====getUser====')
-
-  // Get User
-  let user = await new Promise(async(resolve) => {
-    redis.hget('user', identifier, async (err, userJson) => {
-      if (err) {
-        console.warn(err)
-        throw err;
-      }
-      let userData = safeJSON.parse(userJson) || {}
-      resolve(userData)
-    })
-  })
-
-  console.warn('checking auth')
-  // Generate hash if User doesn't exist
-  if (!user.authentication) {
-    user.authentication = await new Promise(async (resolve) => {
-      console.warn('crypto start')
-      crypto.randomBytes(16, async (err, salt) => {
-        console.warn('crypto done')
+async function authenticate(identifier , authentication) {
+  let user = await fetchUser(identifier) || await newUser(authentication)
+  let valid = await verify(user, authentication)
+  if(valid) await saveUser(identifier, user)
+  return valid ? user : null
+  
+  async function fetchUser(identifier) {
+    return user = await new Promise(async(resolve) => {
+      redis.hget('user', identifier, async (err, userJson) => {
         if (err) {
-          console.warn(err)
-          throw err;
+          throw err
         }
-        console.warn('argon2i start')
-        let hash = argon2i.hash(authentication, salt)
-        console.warn('argon2i done')
-        resolve(hash)
+        let userData = safeJSON.parse(userJson, null)
+        resolve(userData)
       })
     })
   }
-  console.log('got user: ', {user})
 
-  // Determine if User is Valid
-  valid = await argon2i.verify(user.authentication, authentication)
-  console.log('valid: ', {valid})
+  async function newUser(authentication) {
+    return user = await new Promise(async(resolve) => {
+      crypto.randomBytes(16, async (err, salt) => {
+        if (err) {
+          throw err
+        }
+        let hash = argon2i.hash(authentication, salt)
+        resolve({hash})
+      })
+    })
+  }
 
-  // Update User if Valid
-  if (valid) {
+  async function verify(user, authentication) {
+    return await argon2i.verify(user.authentication, authentication)
+  }
+
+  async function saveUser(identifier, user) {
     await new Promise((resolve) => {
       let userJson = JSON.stringify(user)
       redis.hset('user', identifier, userJson, async (err) => {
-        if (err) { throw err }
+        if (err) {
+          throw err
+        }
         resolve()
       })
     })
   }
-
-  console.warn('got user: ', {user, valid})
-
-  return valid ? user : null
 }
 
 expressApp.ws('/stream', async ws => {
   extendWs(ws, true)
   ws.on('login', async ( {identifier , authentication}, remoteMessageId) => {
-    const user = await getUser(identifier, authentication)
+    const user = await authenticate(identifier, authentication)
     const success = !!user
     if(user) {
       ws.identifier = identifier
