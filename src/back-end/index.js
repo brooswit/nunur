@@ -56,7 +56,7 @@ async function getUser(identifier , authentication) {
   console.log('got user: ', {user})
 
   // Determine if User is Valid
-  valid = argon2i.verify(user.authentication, authentication)
+  valid = await argon2i.verify(user.authentication, authentication)
   console.log('valid: ', {valid})
 
   // Update User if Valid
