@@ -32,7 +32,7 @@ async function authenticate(identifier , authentication) {
           throw err
         }
         let userData = safeJSON.parse(userJson, null)
-        if(!userData.hash) userData = null;
+        if(userData && !userData.hash) userData = null;
         resolve(userData)
       })
     })
