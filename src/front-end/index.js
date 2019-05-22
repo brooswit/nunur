@@ -110,13 +110,16 @@ const store = new Vuex.Store({
         state.messages = []
       }
     },
-    async connect({dispatch}) {
+    async connect({state, dispatch}) {
       await dispatch('disconnect')
       console.warn('CONNECTION_STATE_CONNECTING')
       xws = new WebSocket(config['baseUrl'] + '/stream')
       extendWs(xws, true)
       await dispatch('changeConnectionState', { connectionState: CONNECTION_STATE_CONNECTING })
-      xws.on('open', async() => { await dispatch('changeConnectionState', {connectionState: CONNECTION_STATE_CONNECTED}) })
+      xws.on('open', async() => {
+        await dispatch('changeConnectionState', {connectionState: CONNECTION_STATE_CONNECTED})
+        if (state.identifier && state.authentication) { await dispatch('login') }
+      })
       xws.on('dm', async({sender, type, content}) => { await dispatch('recieveMessage', {sender, type, content}) })
       xws.on('close', async() => { await dispatch('reconnect') })
     },

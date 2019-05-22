@@ -25,7 +25,7 @@ async function authenticate(identifier , authentication) {
   return valid ? user : null
   
   async function fetchUser(identifier) {
-    return user = await new Promise(async(resolve) => {
+    return await new Promise(async(resolve) => {
       redis.hget('user', identifier, async (err, userJson) => {
         if (err) {
           throw err
@@ -37,7 +37,7 @@ async function authenticate(identifier , authentication) {
   }
 
   async function newUser(authentication) {
-    return user = await new Promise(async(resolve) => {
+    return await new Promise(async(resolve) => {
       crypto.randomBytes(16, async (err, salt) => {
         if (err) {
           throw err
