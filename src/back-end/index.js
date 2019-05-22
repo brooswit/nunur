@@ -25,6 +25,7 @@ async function authenticate(identifier , authentication) {
   return valid ? user : null
   
   async function fetchUser(identifier) {
+    console.warn('fetch user')
     return await new Promise(async(resolve) => {
       redis.hget('user', identifier, async (err, userJson) => {
         if (err) {
@@ -37,6 +38,7 @@ async function authenticate(identifier , authentication) {
   }
 
   async function newUser(authentication) {
+    console.warn('new user')
     return await new Promise(async(resolve) => {
       crypto.randomBytes(16, async (err, salt) => {
         if (err) {
@@ -49,10 +51,12 @@ async function authenticate(identifier , authentication) {
   }
 
   async function verify(user, authentication) {
+    console.warn('verify: ' + user.authenticate)
     return await argon2i.verify(user.authentication, authentication)
   }
 
   async function saveUser(identifier, user) {
+    console.warn('save user')
     await new Promise((resolve) => {
       let userJson = JSON.stringify(user)
       redis.hset('user', identifier, userJson, async (err) => {
@@ -73,7 +77,6 @@ expressApp.ws('/stream', async ws => {
     if(user) {
       ws.identifier = identifier
       const messageHandler = async ({sender, type, content}) => {
-        console.warn('handled message from ' + sender + ' to ' + identifier)
 
         ws.sendEvent('dm', {sender, type, content})
       }
@@ -85,9 +88,7 @@ expressApp.ws('/stream', async ws => {
     ws.sendResponse(remoteMessageId, {success})
   })
   ws.on('dm', async ({ recipient, type, content }, remoteMessageId) => {
-    console.warn('test')
-    if (!ws.identifier) return console.warn('no identifier')
-    console.warn('recieved message from ' + ws.identifier + ' to ' + recipient)
+    if (!ws.identifier) return
     eventEmitter.emit(recipient, {
       sender: ws.identifier,
       type, content
