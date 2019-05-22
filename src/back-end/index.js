@@ -32,6 +32,7 @@ async function authenticate(identifier , authentication) {
           throw err
         }
         let userData = safeJSON.parse(userJson, null)
+        if(!userData.hash) userData = null;
         resolve(userData)
       })
     })
@@ -51,8 +52,8 @@ async function authenticate(identifier , authentication) {
   }
 
   async function verify(user, authentication) {
-    console.warn('verify: ' + user.authenticate)
-    return await argon2i.verify(user.authentication, authentication)
+    console.warn('verify: ' + user.hash)
+    return await argon2i.verify(user.hash, authentication)
   }
 
   async function saveUser(identifier, user) {
