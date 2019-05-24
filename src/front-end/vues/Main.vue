@@ -18,11 +18,11 @@
     <div v-if="connectionState===6">
       Contacts:<br/>
       <li v-for="contact in contacts">
-        <span @click="setTarget">{{ contact }}</span>
+        <span @click="setTargetByValue" :value="contact">{{ contact }}</span>
       </li>
 
       Chat:<br/>
-      Target: <input :value="target" @input="setTarget"><br/>
+      Target: <input :value="target" @input="setTargetByValue"><br/>
       Messages:<br/>
       <li v-for="message in targetMessages">
         {{ message }}<br/>
@@ -61,7 +61,8 @@
       setIdentifier(event) { this.$store.dispatch('setIdentifier', {identifier: event.target.value}) },
       setAuthentication(event) { this.$store.dispatch('setAuthentication', {authentication: event.target.value}) },
       login(event) { this.$store.dispatch('login') },
-      setTarget(event) { this.$store.dispatch('setTarget', { target: event.target.value || event.target.text() }) },
+      setTargetByValue(event) { this.$store.dispatch('setTarget', { target: event.target.value }) },
+      setTargetByText(event) { this.$store.dispatch('setTarget', { target: event.target.text() }) },
       setMessageType(event) { this.$store.dispatch('setMessageType', { messageType: event.target.value }) },
       setMessageContent(event) { this.$store.dispatch('setMessageContent', { messageContent: event.target.value }) },
       sendMessage(event) { this.$store.dispatch('sendMessage') },
