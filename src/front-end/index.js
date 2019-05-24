@@ -185,10 +185,10 @@ const store = new Vuex.Store({
       const type = state.messageType
       const content =  state.messageContent
       return await new Promise((done) => {
-        xws.sendRequest('dm', { recipient, type, content }, (error) => {
+        xws.sendRequest('dm', { recipient, type, content }, () => {
           console.warn('message sent')
-          dispatch('registerMessage', { sender, recipient, type, content, error })
-          done(error)
+          dispatch('registerMessage', { sender, recipient, type, content })
+          done()
         })
       })
     },
@@ -197,9 +197,9 @@ const store = new Vuex.Store({
       const recipient = state.identifier
       dispatch('registerMessage', { sender, recipient, type, content })
     },
-    async registerMessage({state, dispatch}, {sender, recipient, type, content, error}) {
+    async registerMessage({state, dispatch}, {sender, recipient, type, content}) {
       console.warn('register message')
-      state.messages.push({sender, recipient, type, content, error})
+      state.messages.push({sender, recipient, type, content})
       await dispatch('save')
     },
     async changeConnectionState({commit}, { connectionState, isNewUser }) {
