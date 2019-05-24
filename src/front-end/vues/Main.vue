@@ -17,8 +17,8 @@
     </div>
     <div v-if="connectionState===6">
       Contacts:<br/>
-      <li v-for="contact in contacts" @click="setTargetByValue" :value="contact">
-        click to chat to {{ contact }}
+      <li v-for="contact in contacts" @click="setTarget($event, contact)">
+        {{ contact }}
       </li>
 
       Chat:<br/>
@@ -62,7 +62,7 @@
       setAuthentication(event) { this.$store.dispatch('setAuthentication', {authentication: event.target.value}) },
       login(event) { this.$store.dispatch('login') },
       setTargetByValue(event) { this.$store.dispatch('setTarget', { target: event.target.value }) },
-      setTargetByText(event) { this.$store.dispatch('setTarget', { target: event.target.text() }) },
+      setTarget(event, target) { this.$store.dispatch('setTarget', { target }) },
       setMessageType(event) { this.$store.dispatch('setMessageType', { messageType: event.target.value }) },
       setMessageContent(event) { this.$store.dispatch('setMessageContent', { messageContent: event.target.value }) },
       sendMessage(event) { this.$store.dispatch('sendMessage') },
