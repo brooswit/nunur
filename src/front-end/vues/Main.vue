@@ -17,8 +17,10 @@
     </div>
     <div v-if="connectionState===6">
       Contacts:<br/>
-      <li v-for="contact in contacts" @click="setTarget" @value="contact">
-        {{ contact }}<br/>
+      <li v-for="contact in contacts">
+        <div @click="setTarget" @value="contact">
+          {{ contact }}
+        </div>
       </li>
 
       Chat:<br/>
