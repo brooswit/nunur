@@ -46,10 +46,17 @@
           <!-- Message Type: <input :value="messageType" @input="setMessageType"><br/> -->
           <input :value="messageContent" @input="setMessageContent">
           <button @click="sendMessage()">Send</button>
+          <b-dropdown text="Dropdown Button">
+            <b-dropdown-item
+              v-for="messageType in ['chat','mood']"
+              :value="messageType"
+              @click="setMessageType($event)">
+              {{messageType}}
+            </b-dropdown-item>
+          </b-dropdown>
           <b-form-select v-model="messageType" :options="['chat','mood']"></b-form-select><br/>
-          Messages:<br/>
           <li v-for="message in targetMessages | reverse">
-            {{ message.sender }}: {{ message }}<br/>
+            {{ message.sender }} ({{message.type}}): {{ message }}<br/>
           </li><br/>
         </b-col>
         <b-col cols="1">
