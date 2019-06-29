@@ -1,5 +1,5 @@
 <template>
-  <b-container>
+  <div>
     <b-navbar toggleable="lg" type="dark" variant="info">
       <b-navbar-brand>NUNUR.biz</b-navbar-brand>
     </b-navbar>
@@ -62,7 +62,7 @@
         </b-flex>
       </b-layout>
     </b-container>
-  </b-container>
+  </div>
 </template>
 
 <script>
