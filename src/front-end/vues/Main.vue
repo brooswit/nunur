@@ -1,51 +1,50 @@
 <template>
-  <v-container id="app">
-    <v-toolbar dark color="primary">
-      <v-toolbar-title class="white--text">NUNUR</v-toolbar-title>
-      <v-spacer></v-spacer>
-    </v-toolbar>
-    <v-container fluid v-if="connectionState<=1">
-      <v-layout column>
-        <v-flex>
+  <b-container>
+    <b-navbar toggleable="lg" type="dark" variant="info">
+      <b-navbar-brand>NUNUR.biz</b-navbar-brand>
+    </b-navbar>
+    <b-container fluid v-if="connectionState<=1">
+      <b-layout column>
+        <b-flex>
           Disconnected...
-        </v-flex>
-      </v-layout>
-    </v-container>
-    <v-container fluid v-if="connectionState===2">
-      <v-layout column>
-        <v-flex>
+        </b-flex>
+      </b-layout>
+    </b-container>
+    <b-container fluid v-if="connectionState===2">
+      <b-layout column>
+        <b-flex>
           Connecting...
-        </v-flex>
-      </v-layout>
-    </v-container>
-    <v-container fluid v-if="connectionState===3 || connectionState===4">
-      <v-layout column>
-        <v-flex>
+        </b-flex>
+      </b-layout>
+    </b-container>
+    <b-container fluid v-if="connectionState===3 || connectionState===4">
+      <b-layout column>
+        <b-flex>
           <span v-if="connectionState===4">Logged out</span></br>
           identifier: <input :value="identifier" @input="setIdentifier"><br/>
           authentication: <input type="password" :value="authentication" @input="setAuthentication"><br/>
           <button @click="login()">Login</button>
-        </v-flex>
-      </v-layout>
-    </v-container>
-    <v-container fluid v-if="connectionState===5">
-      <v-layout column>
-        <v-flex>
+        </b-flex>
+      </b-layout>
+    </b-container>
+    <b-container fluid v-if="connectionState===5">
+      <b-layout column>
+        <b-flex>
           Logging in...
-        </v-flex>
-      </v-layout>
-    </v-container>
-    <v-container fluid v-if="connectionState===6">
-      <v-layout column>
-        <v-flex>
+        </b-flex>
+      </b-layout>
+    </b-container>
+    <b-container fluid v-if="connectionState===6">
+      <b-layout column>
+        <b-flex>
           Contacts:<br/>
           <li v-for="contact in contacts" @click="setTarget($event, contact)">
             {{ contact }}
           </li>
-        </v-flex>
-      </v-layout>
-      <v-layout column>
-        <v-flex>
+        </b-flex>
+      </b-layout>
+      <b-layout column>
+        <b-flex>
           Chat:<br/>
           Target: <input :value="target" @input="setTargetByValue"><br/>
           Messages:<br/>
@@ -55,15 +54,15 @@
           Message Type: <input :value="messageType" @input="setMessageType"><br/>
           Message Content: <input :value="messageContent" @input="setMessageContent"><br/>
           <button @click="sendMessage()">Send Message</button><br/>
-        </v-flex>
-      </v-layout>
-      <v-layout column>
-        <v-flex>
+        </b-flex>
+      </b-layout>
+      <b-layout column>
+        <b-flex>
           Settings:<br/>
-        </v-flex>
-      </v-layout>
-    </v-container>
-  </v-container>
+        </b-flex>
+      </b-layout>
+    </b-container>
+  </b-container>
 </template>
 
 <script>
