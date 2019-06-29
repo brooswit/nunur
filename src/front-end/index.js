@@ -2,19 +2,20 @@
 import 'babel-polyfill'
 
 import './css/main.css'
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 import config from './config'
 
 import Vue from 'vue'
-import Vuetify from 'vuetify'
+import BootstrapVue from 'bootstrap-vue'
 import Vuex from 'vuex'
 const { mapActions, mapState } = Vuex
 
 import Main from './vues/Main.vue'
 
 import {extendWs} from 'js-common'
-
-Vue.use(Vuetify)
+Vue.use(BootstrapVue)
 Vue.use(Vuex)
 
 const dev_shortCircuitLogin = false
