@@ -12,36 +12,52 @@
       </v-layout>
     </v-container>
     <v-container fluid v-if="connectionState===2">
-      Connecting...
+      <v-layout column>
+        <v-flex>
+          Connecting...
+        </v-flex>
+      </v-layout>
     </v-container>
     <v-container fluid v-if="connectionState===3 || connectionState===4">
-      <span v-if="connectionState===4">Logged out</span></br>
-      identifier: <input :value="identifier" @input="setIdentifier"><br/>
-      authentication: <input type="password" :value="authentication" @input="setAuthentication"><br/>
-      <button @click="login()">Login</button>
+      <v-layout column>
+        <v-flex>
+          <span v-if="connectionState===4">Logged out</span></br>
+          identifier: <input :value="identifier" @input="setIdentifier"><br/>
+          authentication: <input type="password" :value="authentication" @input="setAuthentication"><br/>
+          <button @click="login()">Login</button>
+        </v-flex>
+      </v-layout>
     </v-container>
     <v-container fluid v-if="connectionState===5">
-      Logging in...
+      <v-layout column>
+        <v-flex>
+          Logging in...
+        </v-flex>
+      </v-layout>
     </v-container>
     <v-container fluid v-if="connectionState===6">
-      Contacts:<br/>
-      <li v-for="contact in contacts" @click="setTarget($event, contact)">
-        {{ contact }}
-      </li>
+      <v-layout column>
+        <v-flex>
+          Contacts:<br/>
+          <li v-for="contact in contacts" @click="setTarget($event, contact)">
+            {{ contact }}
+          </li>
 
-      Chat:<br/>
-      Target: <input :value="target" @input="setTargetByValue"><br/>
-      Messages:<br/>
-      <li v-for="message in targetMessages">
-        {{ message }}<br/>
-      </li><br/>
-      Message Type: <input :value="messageType" @input="setMessageType"><br/>
-      Message Content: <input :value="messageContent" @input="setMessageContent"><br/>
-      <button @click="sendMessage()">Send Message</button><br/>
+          Chat:<br/>
+          Target: <input :value="target" @input="setTargetByValue"><br/>
+          Messages:<br/>
+          <li v-for="message in targetMessages">
+            {{ message }}<br/>
+          </li><br/>
+          Message Type: <input :value="messageType" @input="setMessageType"><br/>
+          Message Content: <input :value="messageContent" @input="setMessageContent"><br/>
+          <button @click="sendMessage()">Send Message</button><br/>
 
-      Settings:<br/>
+          Settings:<br/>
+        </v-flex>
+      </v-layout>
     </v-container>
-  </div>
+  </v-container>
 </template>
 
 <script>
