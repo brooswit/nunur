@@ -46,7 +46,7 @@
           <!-- Message Type: <input :value="messageType" @input="setMessageType"><br/> -->
           <input :value="messageContent" @input="setMessageContent">
           <button @click="sendMessage()">Send</button>
-          <b-dropdown text="Dropdown Button">
+          <b-dropdown :text="messageType">
             <b-dropdown-item
               v-for="messageType in ['chat','mood']"
               :value="messageType"
