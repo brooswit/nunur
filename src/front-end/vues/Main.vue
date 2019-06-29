@@ -42,7 +42,10 @@
           <li v-for="contact in contacts" @click="setTarget($event, contact)">
             {{ contact }}
           </li>
-
+        </v-flex>
+      </v-layout>
+      <v-layout column>
+        <v-flex>
           Chat:<br/>
           Target: <input :value="target" @input="setTargetByValue"><br/>
           Messages:<br/>
@@ -52,7 +55,10 @@
           Message Type: <input :value="messageType" @input="setMessageType"><br/>
           Message Content: <input :value="messageContent" @input="setMessageContent"><br/>
           <button @click="sendMessage()">Send Message</button><br/>
-
+        </v-flex>
+      </v-layout>
+      <v-layout column>
+        <v-flex>
           Settings:<br/>
         </v-flex>
       </v-layout>
