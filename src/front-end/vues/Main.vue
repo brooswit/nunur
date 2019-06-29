@@ -36,7 +36,7 @@
     </b-container>
     <b-container fluid v-if="connectionState===6">
       <b-row>
-        <b-col cols="1">
+        <b-col cols="2">
           <b-container fluid>
             <b-row>
               <b-col>
@@ -59,10 +59,10 @@
                 <b-form-input v-model="messageContent"></b-form-input>
               </b-col>
               <b-col cols="3">
-                <b-button @click="sendMessage()">Send</b-button>
-              </b-col>
-              <b-col cols="3">
                 <b-form-select v-model="messageType" :options="['chat','mood']"></b-form-select><br/>
+              </b-col>
+              <b-col cols="1">
+                <b-button @click="sendMessage()">Send</b-button>
               </b-col>
             </b-row>
             <b-row v-for="message in targetMessages | reverse">
@@ -72,7 +72,7 @@
             </b-row>
           </b-container>
         </b-col>
-        <b-col cols="1">
+        <b-col cols="4">
           <b-container fluid>
             <b-row>
               <b-col>
