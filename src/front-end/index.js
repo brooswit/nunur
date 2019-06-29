@@ -235,8 +235,8 @@ new Vue({
   ]),
   filters: {
     reverse: (value) => {
-      return value.slice().reverse();
-    }
+      return value.slice().reverse()
+    },
   },
   created () {
     this.$store.dispatch('connect')

@@ -38,7 +38,7 @@
       <b-row>
         <b-col cols="4">
           Target: <input :value="target" @input="setTargetByValue"><br/>
-          <li v-for="contact in contacts | reverse" @click="setTarget($event, contact)">
+          <li v-for="contact in contacts" @click="setTarget($event, contact)">
             {{ contact }}
           </li>
         </b-col>
@@ -47,12 +47,13 @@
           Message Content: <input :value="messageContent" @input="setMessageContent"><br/>
           <button @click="sendMessage()">Send Message</button><br/>
           Messages:<br/>
-          <li v-for="message in targetMessages | reverse">
+          <li v-for="message in targetMessages">
+            <!-- <b-container fluid v-if="" -->
             {{ message }}<br/>
           </li><br/>
         </b-col>
         <b-col cols="4">
-          <b-container>
+          <b-container fluid>
             <b-row>
               <b-col>
                 Contact settings:<br/>
