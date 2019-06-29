@@ -41,7 +41,7 @@ const store = new Vuex.Store({
     authentication: "",
     messages: [],
     target: "",
-    messageType: "",
+    messageType: "chat",
     messageContent: "",
   },
   getters: {
@@ -187,6 +187,9 @@ const store = new Vuex.Store({
       const recipient = state.target
       const type = state.messageType
       const content =  state.messageContent
+
+      state.messageContent = ""
+
       return await new Promise((done) => {
         xws.sendRequest('dm', { recipient, type, content }, () => {
           console.warn('message sent')

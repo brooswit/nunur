@@ -36,7 +36,7 @@
     </b-container>
     <b-container fluid v-if="connectionState===6">
       <b-row>
-        <b-col cols="4">
+        <b-col cols="1">
           Target: <input :value="target" @input="setTargetByValue"><br/>
           <li v-for="contact in contacts | reverse" @click="setTarget($event, contact)">
             {{ contact }}
@@ -44,15 +44,15 @@
         </b-col>
         <b-col>
           <!-- Message Type: <input :value="messageType" @input="setMessageType"><br/> -->
-          Message Content: <input :value="messageContent" @input="setMessageContent"><br/>
-          <button @click="sendMessage()">Send Message</button><br/>
+          <input :value="messageContent" @input="setMessageContent">
+          <button @click="sendMessage()">Send</button>
+          <b-form-select v-model="messageType" :options="['chat','mood']"></b-form-select><br/>
           Messages:<br/>
           <li v-for="message in targetMessages | reverse">
-            <!-- <b-container fluid v-if="" -->
-            {{ message }}<br/>
+            {{ message.sender }}: {{ message }}<br/>
           </li><br/>
         </b-col>
-        <b-col cols="4">
+        <b-col cols="1">
           <b-container fluid>
             <b-row>
               <b-col>
