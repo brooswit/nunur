@@ -42,8 +42,6 @@
             {{ contact }}
           </li>
         </b-col>
-      </b-row>
-      <b-row>
         <b-col>
           Chat:<br/>
           Target: <input :value="target" @input="setTargetByValue"><br/>
@@ -55,8 +53,6 @@
           Message Content: <input :value="messageContent" @input="setMessageContent"><br/>
           <button @click="sendMessage()">Send Message</button><br/>
         </b-col>
-      </b-row>
-      <b-row>
         <b-col>
           Settings:<br/>
         </b-col>
