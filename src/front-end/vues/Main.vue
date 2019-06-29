@@ -46,7 +46,7 @@
           <b-container fluid>
             <b-row>
               <b-col>
-                <input :value="messageContent" @input="setMessageContent">
+                <b-form-input v-model="messageContent"></b-form-input>
               </b-col>
               <b-col cols="1">
                 <b-button @click="sendMessage()">Send</b-button>
