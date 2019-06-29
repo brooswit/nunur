@@ -23,7 +23,7 @@
           <span v-if="connectionState===4">Logged out</span></br>
           identifier: <input :value="identifier" @input="setIdentifier"><br/>
           authentication: <input type="password" :value="authentication" @input="setAuthentication"><br/>
-          <button @click="login()">Login</button>
+          <b-button @click="login()">Login</b-button>
         </b-col>
       </b-row>
     </b-container>
@@ -45,7 +45,7 @@
         <b-col>
           <!-- Message Type: <input :value="messageType" @input="setMessageType"><br/> -->
           <input :value="messageContent" @input="setMessageContent">
-          <button @click="sendMessage()">Send</button>
+          <b-button @click="sendMessage()">Send</b-button>
           <b-dropdown :text="messageType">
             <b-dropdown-item
               v-for="messageType in ['chat','mood']"
