@@ -182,14 +182,9 @@ const store = new Vuex.Store({
       if(state.connectionState === CONNECTION_STATE_LOGGED_IN){ xws.sendEvent('logout') }
       dispatch('changeConnectionState', {connectionState: CONNECTION_STATE_LOGGED_OUT})
     },
-    async sendMessage({state, dispatch}) { 
+    async sendMessage({state, dispatch}, {type, content}) { 
       const sender = state.identifier
       const recipient = state.target
-      const type = state.messageType
-      const content =  state.messageContent
-
-      state.messageType = "chat"
-      state.messageContent = ""
 
       return await new Promise((done) => {
         xws.sendRequest('dm', { recipient, type, content }, () => {

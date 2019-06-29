@@ -122,6 +122,12 @@
         'targetMessages',
       ]),
   },
+    data() {
+      return {
+        messageContent: '',
+        mesaageType: "chat",
+      }
+    },
     methods: {
       setIdentifier(event) { this.$store.dispatch('setIdentifier', {identifier: event.target.value}) },
       setAuthentication(event) { this.$store.dispatch('setAuthentication', {authentication: event.target.value}) },
@@ -131,7 +137,10 @@
       setMessageTypeByValue(value) { this.$store.dispatch('setMessageType', { messageType: value }) },
       setMessageType(event) { this.$store.dispatch('setMessageType', { messageType: event.target.value }) },
       setMessageContent(event) { this.$store.dispatch('setMessageContent', { messageContent: event.target.value }) },
-      sendMessage(event) { this.$store.dispatch('sendMessage') },
+      sendMessage(event) { this.$store.dispatch('sendMessage', {
+        type: this.messageType,
+        content: this.messageContent
+      }) },
     },
   });
 </script>
