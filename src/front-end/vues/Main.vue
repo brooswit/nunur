@@ -43,20 +43,24 @@
           </li>
         </b-col>
         <b-col>
-          <!-- Message Type: <input :value="messageType" @input="setMessageType"><br/> -->
-          <input :value="messageContent" @input="setMessageContent">
-          <b-button @click="sendMessage()">Send</b-button>
-          <b-dropdown :text="messageType">
-            <b-dropdown-item
-              v-for="messageType in ['chat','mood']"
-              @click="setMessageTypeByValue(messageType)">
-              {{messageType}}
-            </b-dropdown-item>
-          </b-dropdown>
-          <b-form-select v-model="messageType" :options="['chat','mood']"></b-form-select><br/>
-          <li v-for="message in targetMessages | reverse">
-            {{ message.sender }} ({{message.type}}): {{ message }}<br/>
-          </li><br/>
+          <b-container fluid>
+            <b-row>
+              <b-col>
+                <input :value="messageContent" @input="setMessageContent">
+              </b-col>
+              <b-col cols="1">
+                <b-button @click="sendMessage()">Send</b-button>
+              </b-col>
+              <b-col cols="1">
+                <b-form-select v-model="messageType" :options="['chat','mood']"></b-form-select><br/>
+              </b-col>
+            </b-row>
+            <b-row v-for="message in targetMessages | reverse">
+              <b-col>
+                {{ message.sender }} ({{message.type}}): {{ message }}<br/>
+              </b-col>
+            </b-row>
+          </b-container>
         </b-col>
         <b-col cols="1">
           <b-container fluid>
