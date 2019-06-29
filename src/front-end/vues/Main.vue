@@ -4,47 +4,47 @@
       <b-navbar-brand>NUNUR.biz</b-navbar-brand>
     </b-navbar>
     <b-container fluid v-if="connectionState<=1">
-      <b-layout column>
-        <b-flex>
+      <b-row>
+        <b-col>
           Disconnected...
-        </b-flex>
-      </b-layout>
+        </b-col>
+      </b-row>
     </b-container>
     <b-container fluid v-if="connectionState===2">
-      <b-layout column>
-        <b-flex>
+      <b-row>
+        <b-col>
           Connecting...
-        </b-flex>
-      </b-layout>
+        </b-col>
+      </b-row>
     </b-container>
     <b-container fluid v-if="connectionState===3 || connectionState===4">
-      <b-layout column>
-        <b-flex>
+      <b-row>
+        <b-col>
           <span v-if="connectionState===4">Logged out</span></br>
           identifier: <input :value="identifier" @input="setIdentifier"><br/>
           authentication: <input type="password" :value="authentication" @input="setAuthentication"><br/>
           <button @click="login()">Login</button>
-        </b-flex>
-      </b-layout>
+        </b-col>
+      </b-row>
     </b-container>
     <b-container fluid v-if="connectionState===5">
-      <b-layout column>
-        <b-flex>
+      <b-row>
+        <b-col>
           Logging in...
-        </b-flex>
-      </b-layout>
+        </b-col>
+      </b-row>
     </b-container>
     <b-container fluid v-if="connectionState===6">
-      <b-layout column>
-        <b-flex>
+      <b-row>
+        <b-col>
           Contacts:<br/>
           <li v-for="contact in contacts" @click="setTarget($event, contact)">
             {{ contact }}
           </li>
-        </b-flex>
-      </b-layout>
-      <b-layout column>
-        <b-flex>
+        </b-col>
+      </b-row>
+      <b-row>
+        <b-col>
           Chat:<br/>
           Target: <input :value="target" @input="setTargetByValue"><br/>
           Messages:<br/>
@@ -54,13 +54,13 @@
           Message Type: <input :value="messageType" @input="setMessageType"><br/>
           Message Content: <input :value="messageContent" @input="setMessageContent"><br/>
           <button @click="sendMessage()">Send Message</button><br/>
-        </b-flex>
-      </b-layout>
-      <b-layout column>
-        <b-flex>
+        </b-col>
+      </b-row>
+      <b-row>
+        <b-col>
           Settings:<br/>
-        </b-flex>
-      </b-layout>
+        </b-col>
+      </b-row>
     </b-container>
   </div>
 </template>
