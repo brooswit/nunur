@@ -49,8 +49,7 @@
           <b-dropdown :text="messageType">
             <b-dropdown-item
               v-for="messageType in ['chat','mood']"
-              :value="messageType"
-              @click="setMessageType($event)">
+              @click="setMessageTypeByValue(messageType)">
               {{messageType}}
             </b-dropdown-item>
           </b-dropdown>
@@ -115,6 +114,7 @@
       login(event) { this.$store.dispatch('login') },
       setTargetByValue(event) { this.$store.dispatch('setTarget', { target: event.target.value }) },
       setTarget(event, target) { this.$store.dispatch('setTarget', { target }) },
+      setMessageTypeByValue(value) { this.$store.dispatch('setMessageType', { messageType: value }) },
       setMessageType(event) { this.$store.dispatch('setMessageType', { messageType: event.target.value }) },
       setMessageContent(event) { this.$store.dispatch('setMessageContent', { messageContent: event.target.value }) },
       sendMessage(event) { this.$store.dispatch('sendMessage') },
