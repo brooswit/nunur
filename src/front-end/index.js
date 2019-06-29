@@ -220,6 +220,12 @@ new Vue({
     isNewUser: state => state.isNewUser,
     identifier: state => state.identifier,
     authentication: state => state.authentication,
+    remoteData: state => {
+      return { identify, hashedPassword: "-omitted-" }
+    },
+    localData: state => {
+      return localStorage.getItem('nunur:' + state.identifier)
+    },
   }),
   methods: mapActions([
     'connect',
