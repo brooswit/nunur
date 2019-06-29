@@ -1,21 +1,29 @@
 <template>
-  <div id="app">
-    <div v-if="connectionState<=1">
-      Disconnected...
-    </div>
-    <div v-if="connectionState===2">
+  <v-container id="app">
+    <v-toolbar dark color="primary">
+      <v-toolbar-title class="white--text">NUNUR</v-toolbar-title>
+      <v-spacer></v-spacer>
+    </v-toolbar>
+    <v-container fluid v-if="connectionState<=1">
+      <v-layout column>
+        <v-flex>
+          Disconnected...
+        </v-flex>
+      </v-layout>
+    </v-container>
+    <v-container fluid v-if="connectionState===2">
       Connecting...
-    </div>
-    <div v-if="connectionState===3 || connectionState===4">
+    </v-container>
+    <v-container fluid v-if="connectionState===3 || connectionState===4">
       <span v-if="connectionState===4">Logged out</span></br>
       identifier: <input :value="identifier" @input="setIdentifier"><br/>
       authentication: <input type="password" :value="authentication" @input="setAuthentication"><br/>
       <button @click="login()">Login</button>
-    </div>
-    <div v-if="connectionState===5">
+    </v-container>
+    <v-container fluid v-if="connectionState===5">
       Logging in...
-    </div>
-    <div v-if="connectionState===6">
+    </v-container>
+    <v-container fluid v-if="connectionState===6">
       Contacts:<br/>
       <li v-for="contact in contacts" @click="setTarget($event, contact)">
         {{ contact }}
@@ -32,7 +40,7 @@
       <button @click="sendMessage()">Send Message</button><br/>
 
       Settings:<br/>
-    </div>
+    </v-container>
   </div>
 </template>
 
