@@ -36,25 +36,53 @@
     </b-container>
     <b-container fluid v-if="connectionState===6">
       <b-row>
-        <b-col>
-          Contacts:<br/>
-          <li v-for="contact in contacts" @click="setTarget($event, contact)">
+        <b-col cols="4">
+          Target: <input :value="target" @input="setTargetByValue"><br/>
+          <li v-for="contact in contacts | reverse" @click="setTarget($event, contact)">
             {{ contact }}
           </li>
         </b-col>
         <b-col>
-          Chat:<br/>
-          Target: <input :value="target" @input="setTargetByValue"><br/>
-          Messages:<br/>
-          <li v-for="message in targetMessages">
-            {{ message }}<br/>
-          </li><br/>
-          Message Type: <input :value="messageType" @input="setMessageType"><br/>
+          <!-- Message Type: <input :value="messageType" @input="setMessageType"><br/> -->
           Message Content: <input :value="messageContent" @input="setMessageContent"><br/>
           <button @click="sendMessage()">Send Message</button><br/>
+          Messages:<br/>
+          <li v-for="message in targetMessages | reverse">
+            {{ message }}<br/>
+          </li><br/>
         </b-col>
-        <b-col>
-          Settings:<br/>
+        <b-col cols="4">
+          <b-container>
+            <b-row>
+              <b-col>
+                Contact settings:<br/>
+              </b-col>
+            </b-row>
+            <b-row>
+              <b-col>
+                NUNUR settings:
+              </b-col>
+            </b-row>
+            <b-row>
+              <b-col>
+                Your remote data:
+                {{
+                  JSON.stringify({
+                    identify,
+                    hashedPassword: "-omitted-"
+                  })
+                }}
+              </b-col>
+            </b-row>
+            <b-row>
+              <b-col>
+                Your local data:
+                {{
+                  localStorage.getItem('nunur:' + identifier)
+                }}
+              </b-col>
+            </b-row>
+          </b-container>
         </b-col>
       </b-row>
     </b-container>

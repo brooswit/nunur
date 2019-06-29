@@ -233,7 +233,12 @@ new Vue({
     'recieveMessage',
     'changeConnectionState',
   ]),
+  filters: {
+    reverse: (value) => {
+      return value.slice().reverse();
+    }
+  },
   created () {
     this.$store.dispatch('connect')
-  }
+  },
 })
