@@ -126,7 +126,7 @@
           this.$store.commit("SET_TARGET", target)
         },
         get() {
-          return this.$store.getters("GET_TARGET")
+          return this.$store.getter("GET_TARGET")
         }
       },
       messageType: {
@@ -134,7 +134,7 @@
           this.$store.commit("SET_MESSAGE_TYPE", messageType)
         },
         get() {
-          return this.$store.getters("GET_MESSAGE_TYPE")
+          return this.$store.getter("GET_MESSAGE_TYPE")
         }
       },
       messageContent: {
@@ -142,7 +142,7 @@
           this.$store.commit("SET_MESSAGE_CONTENT", messageContent)
         },
         get() {
-          return this.$store.getters("GET_MESSAGE_CONTENT")
+          return this.$store.getter("GET_MESSAGE_CONTENT")
         }
       },
       
