@@ -199,7 +199,7 @@ const store = new Vuex.Store({
       const recipient = (options && options.target) || state.target
       const type = (options && options.type) || state.messageType
       const content = (options && options.content) || state.messageContent
-      const log = (options && options.log) || (typeof options.log === "boolean" ? options.log : true)
+      const log = (options && options.log && typeof options.log === "boolean") ? options.log : true
       state.messageType = "chat"
       state.messageContent = ""
 
