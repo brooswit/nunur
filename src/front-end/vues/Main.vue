@@ -123,26 +123,26 @@
       ]),
       target: {
         set(target) {
-          this.$store.commit("SET_TARGET", target)
+          this.$store.commit("SET_TARGET", {target})
         },
         get() {
-          return this.$store.getter("GET_TARGET")
+          return this.$store.state.target
         }
       },
       messageType: {
         set(messageType) {
-          this.$store.commit("SET_MESSAGE_TYPE", messageType)
+          this.$store.commit("SET_MESSAGE_TYPE", {messageType})
         },
         get() {
-          return this.$store.getter("GET_MESSAGE_TYPE")
+          return this.$store.state.messageType
         }
       },
       messageContent: {
         set(messageContent) {
-          this.$store.commit("SET_MESSAGE_CONTENT", messageContent)
+          this.$store.commit("SET_MESSAGE_CONTENT", {messageContent})
         },
         get() {
-          return this.$store.getter("GET_MESSAGE_CONTENT")
+          return this.$store.state.messageContent
         }
       },
       
