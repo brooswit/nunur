@@ -68,7 +68,7 @@ const store = new Vuex.Store({
         const hasTarget = state.target === message.sender || state.target === message.recipient
 
         if (hasSelf && hasTarget) {
-          messages.push(message)
+          messages.unshift(message)
         }
       }
       console.warn({messages})

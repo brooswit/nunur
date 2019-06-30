@@ -67,7 +67,7 @@
             </b-row>
             <b-row v-for="message in targetMessages">
               <b-col>
-                {{ message.sender }} ({{message.type}}): {{ message }}
+                {{ message.sender }} ({{message.type}}): {{ message.content }}
               </b-col>
             </b-row>
           </b-container>
