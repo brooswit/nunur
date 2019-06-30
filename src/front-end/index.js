@@ -214,7 +214,7 @@ const store = new Vuex.Store({
       })
     },
     async sendStatus({dispatch, getters}, {status}) {
-      for(contactIndex in getters.contacts) {
+      for(let contactIndex in getters.contacts) {
         const contact = getters.contacts[contactIndex]
         dispatch('sendMessage', {
           target: contact,
