@@ -5,7 +5,7 @@
     </b-navbar>
     <b-container fluid v-if="connectionState<=1">
       <b-row>
-        <b-col>
+        <b-col> 
           Disconnected...
         </b-col>
       </b-row>
@@ -45,7 +45,7 @@
             </b-row>
             <b-row>
               <b-col>
-                <li v-for="contact in contacts | reverse" @click="setTarget($event, contact)">
+                <li v-for="contact in contacts" @click="setTarget($event, contact)">
                   {{ contact }}
                 </li>
               </b-col>
@@ -72,7 +72,7 @@
             </b-row>
           </b-container>
         </b-col>
-        <b-col cols="4">
+        <!-- <b-col cols="3">
           <b-container fluid>
             <b-row>
               <b-col>
@@ -95,7 +95,7 @@
               </b-col>
             </b-row>
           </b-container>
-        </b-col>
+        </b-col> -->
       </b-row>
     </b-container>
   </div>
