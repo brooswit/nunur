@@ -113,9 +113,9 @@
         'identifier',
         'authentication',
 
-        'target',
-        'messageType',
-        'messageContent',
+        // 'target',
+        // 'messageType',
+        // 'messageContent',
       ]),
       ...mapGetters([
         'contacts',

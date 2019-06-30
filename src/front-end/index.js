@@ -185,6 +185,8 @@ const store = new Vuex.Store({
     async sendMessage({state, dispatch}, {recipient, type, content}) { 
       const sender = state.identifier
 
+      console.warn({recipient, type, content})
+
       return await new Promise((done) => {
         xws.sendRequest('dm', { recipient, type, content }, () => {
           console.warn('message sent')
