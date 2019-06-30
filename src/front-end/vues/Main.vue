@@ -113,9 +113,9 @@
         'identifier',
         'authentication',
 
-        // 'target',
-        // 'messageType',
-        // 'messageContent',
+        'target',
+        'messageType',
+        'messageContent',
       ]),
       ...mapGetters([
         'contacts',
@@ -124,9 +124,9 @@
   },
     data() {
       return {
-        target: '',
-        messageContent: '',
-        mesaageType: "chat",
+        // target: '',
+        // messageContent: '',
+        // mesaageType: "chat",
       }
     },
     methods: {
