@@ -112,10 +112,6 @@
         'isNewUser',
         'identifier',
         'authentication',
-
-        // 'target',
-        // 'messageType',
-        // 'messageContent',
       ]),
       ...mapGetters([
         'contacts',
@@ -145,7 +141,6 @@
           return this.$store.state.messageContent
         }
       },
-      
   },
     data() {
       return {

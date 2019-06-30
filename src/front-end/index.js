@@ -80,9 +80,11 @@ const store = new Vuex.Store({
       state.target = target
     },
     SET_MESSAGE_TYPE: (state, {messageType}) => {
+      console.warn({messageType})
       state.messageType = messageType
     },
     SET_MESSAGE_CONTENT: (state, {messageContent}) => {
+      console.warn({messageContent})
       state.messageType = messageContent
     },
     setTarget (state, {target}) {
