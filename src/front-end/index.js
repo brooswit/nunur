@@ -199,7 +199,7 @@ const store = new Vuex.Store({
       const recipient = options.target || state.target
       const type = options.type || state.messageType
       const content = options.content || state.messageContent
-
+      const log = typeof options.log === "boolean" ? options.log : true
       state.messageType = "chat"
       state.messageContent = ""
 
@@ -208,7 +208,9 @@ const store = new Vuex.Store({
       return await new Promise((done) => {
         xws.sendRequest('dm', { recipient, type, content }, () => {
           console.warn('message sent')
-          dispatch('registerMessage', { sender, recipient, type, content })
+          if(log) {
+            dispatch('registerMessage', { sender, recipient, type, content })
+          }
           done()
         })
       })
@@ -219,7 +221,8 @@ const store = new Vuex.Store({
         dispatch('sendMessage', {
           target: contact,
           type: 'status',
-          content: status
+          content: status,
+          log: false
         })
       }
     },
