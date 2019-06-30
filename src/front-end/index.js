@@ -76,13 +76,13 @@ const store = new Vuex.Store({
     },
   },
   mutations: {
-    GET_TARGET: (state, {target}) => {
+    SET_TARGET: (state, {target}) => {
       state.target = target
     },
-    GET_MESSAGE_TYPE: (state, {messageType}) => {
+    SET_MESSAGE_TYPE: (state, {messageType}) => {
       state.messageType = messageType
     },
-    GET_MESSAGE_CONTENT: (state, {messageContent}) => {
+    SET_MESSAGE_CONTENT: (state, {messageContent}) => {
       state.messageType = messageContent
     },
     setTarget (state, {target}) {
