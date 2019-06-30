@@ -49,8 +49,8 @@
         <b-col>
           <b-form-select v-model="messageType" :options="['chat','mood']"></b-form-select>
         </b-col>
-        <b-col cols="1">
-          <b-button @click="sendMessage()">Send</b-button>
+        <b-col>
+          <b-button block @click="sendMessage()">Send</b-button>
         </b-col>
       </b-row>
       <b-row no-gutters>
