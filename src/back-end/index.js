@@ -114,6 +114,14 @@ async function authenticate(identifier , authentication, tokenId = null) {
 
 expressApp.ws('/stream', async ws => {
   extendWs(ws, true)
+  
+  const intervalKey = setInterval(() => {
+    ws.ping()
+  }, 10000)
+  ws.on('close', ()=>{
+    clearInterval(intervalKey)
+  })
+  
   ws.on('login', async ( {identifier , authentication}, remoteMessageId) => {
     const user = await authenticate(identifier, authentication)
     const success = !!user
