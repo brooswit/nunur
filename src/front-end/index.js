@@ -188,16 +188,17 @@ const store = new Vuex.Store({
 
       const connectionState = success ? CONNECTION_STATE_LOGGED_IN : CONNECTION_STATE_LOGGED_OUT
       await dispatch('changeConnectionState', { connectionState, isNewUser})
+      await dispatch('sendStatus', {status: 'online'})
     },
     async logout({state, dispatch}) {
       if(state.connectionState === CONNECTION_STATE_LOGGED_IN){ xws.sendEvent('logout') }
       dispatch('changeConnectionState', {connectionState: CONNECTION_STATE_LOGGED_OUT})
     },
-    async sendMessage({state, dispatch}) { 
+    async sendMessage({state, dispatch}, options) { 
       const sender = state.identifier
-      const recipient = state.target
-      const type = state.messageType
-      const content = state.messageContent
+      const recipient = options.target || state.target
+      const type = options.type || state.messageType
+      const content = options.content || state.messageContent
 
       state.messageType = "chat"
       state.messageContent = ""
@@ -211,6 +212,16 @@ const store = new Vuex.Store({
           done()
         })
       })
+    },
+    async sendStatus({dispatch, getters}, {status}) {
+      for(contactIndex in getters.contacts) {
+        const contact = getters.contacts[contactIndex]
+        dispatch('sendMessage', {
+          target: contact,
+          type: 'status',
+          content: status
+        })
+      }
     },
     async recieveMessage({dispatch, state}, {sender, type, content}) {
       console.warn('receiving message')
