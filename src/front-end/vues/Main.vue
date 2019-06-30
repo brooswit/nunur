@@ -4,21 +4,21 @@
       <b-navbar-brand>NUNUR</b-navbar-brand>
     </b-navbar>
     <b-container fluid v-if="connectionState<=1">
-      <b-row>
+      <b-row no-gutters>
         <b-col> 
           Disconnected...
         </b-col>
       </b-row>
     </b-container>
     <b-container fluid v-if="connectionState===2">
-      <b-row>
+      <b-row no-gutters>
         <b-col>
           Connecting...
         </b-col>
       </b-row>
     </b-container>
     <b-container fluid v-if="connectionState===3 || connectionState===4">
-      <b-row>
+      <b-row no-gutters>
         <b-col>
           <span v-if="connectionState===4">Logged out</span></br>
           identifier: <input :value="identifier" @input="setIdentifier"><br/>
@@ -28,22 +28,22 @@
       </b-row>
     </b-container>
     <b-container fluid v-if="connectionState===5">
-      <b-row>
+      <b-row no-gutters>
         <b-col>
           Logging in...
         </b-col>
       </b-row>
     </b-container>
     <b-container fluid v-if="connectionState===6">
-      <b-row>
+      <b-row no-gutters>
         <b-col cols="2">
           <b-container fluid>
-            <b-row>
+            <b-row no-gutters>
               <b-col>
                 <b-form-input v-model="target"></b-form-input>
               </b-col>
             </b-row>
-            <b-row>
+            <b-row no-gutters>
               <b-col>
                 <li v-for="contact in contacts" @click="setTarget($event, contact)">
                   {{ contact }}
@@ -54,7 +54,7 @@
         </b-col>
         <b-col>
           <b-container fluid>
-            <b-row>
+            <b-row no-gutters>
               <b-col>
                 <b-form-input v-model="messageContent"></b-form-input>
               </b-col>
@@ -65,7 +65,7 @@
                 <b-button @click="sendMessage()">Send</b-button>
               </b-col>
             </b-row>
-            <b-row v-for="message in targetMessages">
+            <b-row no-gutters v-for="message in targetMessages">
               <b-col>
                 {{ message.sender }} ({{message.type}}): {{ message.content }}
               </b-col>
@@ -74,22 +74,22 @@
         </b-col>
         <!-- <b-col cols="3">
           <b-container fluid>
-            <b-row>
+            <b-row no-gutters>
               <b-col>
                 Contact settings:<br/>
               </b-col>
             </b-row>
-            <b-row>
+            <b-row no-gutters>
               <b-col>
                 NUNUR settings:
               </b-col>
             </b-row>
-            <b-row>
+            <b-row no-gutters>
               <b-col>
                 Your remote data: {{ remoteData }}
               </b-col>
             </b-row>
-            <b-row>
+            <b-row no-gutters>
               <b-col>
                 Your local data: {{ localData }}
               </b-col>

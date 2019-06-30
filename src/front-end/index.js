@@ -199,6 +199,9 @@ const store = new Vuex.Store({
       const type = state.messageType
       const content = state.messageContent
 
+      state.messageType = "chat"
+      state.messageContent = ""
+
       console.warn({recipient, type, content})
 
       return await new Promise((done) => {
