@@ -58,9 +58,9 @@
               <b-col>
                 <b-form-input v-model="messageContent"></b-form-input>
               </b-col>
-              <!-- <b-col cols="3">
+              <b-col cols="3">
                 <b-form-select v-model="messageType" :options="['chat','mood']"></b-form-select>
-              </b-col> -->
+              </b-col>
               <b-col cols="1">
                 <b-button @click="sendMessage()">Send</b-button>
               </b-col>
