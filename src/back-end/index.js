@@ -51,7 +51,8 @@ async function authenticate(identifier , authentication, tokenId = null) {
   }
 
   async function verify(session, authentication) {
-    return await argon2i.verify(session.hasOwnProperty('token') ? session.token.hash : token.hash, authentication)
+    let hash = (session.token && session.token.hash) || session.hash
+    return await argon2i.verify(hash, authentication)
   }
 
   async function saveSession(session) {
