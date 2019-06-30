@@ -113,14 +113,39 @@
         'identifier',
         'authentication',
 
-        'target',
-        'messageType',
-        'messageContent',
+        // 'target',
+        // 'messageType',
+        // 'messageContent',
       ]),
       ...mapGetters([
         'contacts',
         'targetMessages',
       ]),
+      target: {
+        set(target) {
+          this.$store.commit("SET_TARGET", target)
+        },
+        get() {
+          return this.$store.getters("GET_TARGET")
+        }
+      },
+      messageType: {
+        set(messageType) {
+          this.$store.commit("SET_MESSAGE_TYPE", messageType)
+        },
+        get() {
+          return this.$store.getters("GET_MESSAGE_TYPE")
+        }
+      },
+      messageContent: {
+        set(messageContent) {
+          this.$store.commit("SET_MESSAGE_CONTENT", messageContent)
+        },
+        get() {
+          return this.$store.getters("GET_MESSAGE_CONTENT")
+        }
+      },
+      
   },
     data() {
       return {

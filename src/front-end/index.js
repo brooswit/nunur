@@ -73,9 +73,27 @@ const store = new Vuex.Store({
       }
       console.warn({messages})
       return messages
-    }
+    },
+    GET_TARGET: (state) => {
+      return state.target
+    },
+    GET_MESSAGE_TYPE: (state) => {
+      return state.messageType
+    },
+    GET_MESSAGE_CONTENT: (state) => {
+      return state.messageType
+    },
   },
   mutations: {
+    GET_TARGET: (state, {target}) => {
+      state.target = target
+    },
+    GET_MESSAGE_TYPE: (state, {messageType}) => {
+      state.messageType = messageType
+    },
+    GET_MESSAGE_CONTENT: (state, {messageContent}) => {
+      state.messageType = messageContent
+    },
     setTarget (state, {target}) {
       state.target = target
     },
