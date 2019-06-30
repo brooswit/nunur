@@ -36,6 +36,25 @@
     </b-container>
     <b-container fluid v-if="connectionState===6">
       <b-row no-gutters>
+        <b-col>
+          <label>Target:</label>
+          <b-form-input v-model="target"></b-form-input>
+        </b-col>
+      </b-row>
+      <b-row no-gutters>
+        <b-col>
+          <b-form-input v-model="messageContent"></b-form-input>
+        </b-col>
+      </b-row>
+      <b-row no-gutters>
+        <b-col>
+          <b-form-select v-model="messageType" :options="['chat','mood']"></b-form-select>
+        </b-col>
+        <b-col>
+          <b-button @click="sendMessage()">Send</b-button>
+        </b-col>
+      </b-row>
+      <b-row no-gutters>
         <b-col cols="2">
           <b-container fluid>
             <b-row no-gutters>
@@ -49,25 +68,6 @@
         </b-col>
         <b-col>
           <b-container fluid>
-            <b-row no-gutters>
-              <b-col>
-                <label>Target:</label>
-                <b-form-input v-model="target"></b-form-input>
-              </b-col>
-            </b-row>
-            <b-row no-gutters>
-              <b-col>
-                <b-form-input v-model="messageContent"></b-form-input>
-              </b-col>
-            </b-row>
-            <b-row no-gutters>
-              <b-col>
-                <b-form-select v-model="messageType" :options="['chat','mood']"></b-form-select>
-              </b-col>
-              <b-col>
-                <b-button @click="sendMessage()">Send</b-button>
-              </b-col>
-            </b-row>
             <b-row no-gutters v-for="message in targetMessages">
               <b-col>
                 {{ message.sender }} ({{message.type}}): {{ message.content }}
