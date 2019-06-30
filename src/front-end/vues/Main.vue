@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-navbar toggleable="lg" type="dark" variant="info">
-      <b-navbar-brand>NUNUR.biz</b-navbar-brand>
+      <b-navbar-brand>NUNUR</b-navbar-brand>
     </b-navbar>
     <b-container fluid v-if="connectionState<=1">
       <b-row>
@@ -65,7 +65,7 @@
                 <b-button @click="sendMessage()">Send</b-button>
               </b-col>
             </b-row>
-            <b-row v-for="message in targetMessages | reverse">
+            <b-row v-for="message in targetMessages">
               <b-col>
                 {{ message.sender }} ({{message.type}}): {{ message }}
               </b-col>
