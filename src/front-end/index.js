@@ -196,10 +196,10 @@ const store = new Vuex.Store({
     },
     async sendMessage({state, dispatch}, options) { 
       const sender = state.identifier
-      const recipient = options.target || state.target
-      const type = options.type || state.messageType
-      const content = options.content || state.messageContent
-      const log = typeof options.log === "boolean" ? options.log : true
+      const recipient = (options && options.target) || state.target
+      const type = (options && options.type) || state.messageType
+      const content = (options && options.content) || state.messageContent
+      const log = (options && options.log) && (typeof options.log === "boolean" ? options.log : true)
       state.messageType = "chat"
       state.messageContent = ""
 
