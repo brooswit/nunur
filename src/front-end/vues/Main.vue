@@ -58,9 +58,9 @@
               <b-col>
                 <b-form-input v-model="messageContent"></b-form-input>
               </b-col>
-              <b-col cols="3">
-                <b-form-select v-model="messageType" :options="['chat','mood']"></b-form-select><br/>
-              </b-col>
+              <!-- <b-col cols="3">
+                <b-form-select v-model="messageType" :options="['chat','mood']"></b-form-select>
+              </b-col> -->
               <b-col cols="1">
                 <b-button @click="sendMessage()">Send</b-button>
               </b-col>
@@ -158,11 +158,7 @@
       setMessageTypeByValue(value) { this.$store.dispatch('setMessageType', { messageType: value }) },
       setMessageType(event) { this.$store.dispatch('setMessageType', { messageType: event.target.value }) },
       setMessageContent(event) { this.$store.dispatch('setMessageContent', { messageContent: event.target.value }) },
-      sendMessage(event) { this.$store.dispatch('sendMessage', {
-        recipient: this.target,
-        type: this.messageType,
-        content: this.messageContent
-      }) },
+      sendMessage(event) { this.$store.dispatch('sendMessage') },
     },
   });
 </script>
