@@ -37,20 +37,19 @@
     <b-container fluid v-if="connectionState===6">
       <b-row no-gutters>
         <b-col>
-          <label>Target:</label>
-          <b-form-input v-model="target"></b-form-input>
+          <b-form-input v-model="target" placeholder="enter target here"></b-form-input>
         </b-col>
       </b-row>
       <b-row no-gutters>
         <b-col>
-          <b-form-input v-model="messageContent"></b-form-input>
+          <b-form-input v-model="messageContent" placeholder="enter message here"></b-form-input>
         </b-col>
       </b-row>
       <b-row no-gutters>
         <b-col>
           <b-form-select v-model="messageType" :options="['chat','mood']"></b-form-select>
         </b-col>
-        <b-col>
+        <b-col cols="1">
           <b-button @click="sendMessage()">Send</b-button>
         </b-col>
       </b-row>
