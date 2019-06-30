@@ -124,6 +124,7 @@
   },
     data() {
       return {
+        target: '',
         messageContent: '',
         mesaageType: "chat",
       }
@@ -138,6 +139,7 @@
       setMessageType(event) { this.$store.dispatch('setMessageType', { messageType: event.target.value }) },
       setMessageContent(event) { this.$store.dispatch('setMessageContent', { messageContent: event.target.value }) },
       sendMessage(event) { this.$store.dispatch('sendMessage', {
+        recipient: this.target,
         type: this.messageType,
         content: this.messageContent
       }) },
